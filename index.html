@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Tara Kapoor | Premium Healthcare Clinic</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary: #1A56DB;
+            --secondary: #4CB0E5;
+            --accent: #E1EFFE;
+            --text-main: #1F2937;
+            --text-light: #6B7280;
+            --bg-color: #F8FAFC;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px rgba(26, 86, 219, 0.15);
+            --glow: 0 0 20px rgba(76, 176, 229, 0.5);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { color: var(--primary); }
+        
+        section { padding: 80px 5%; }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+        }
+
+        /* --- LOADER --- */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--white);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .heartbeat-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); color: var(--secondary); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- BUTTONS & RIPPLE --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn:hover {
+            box-shadow: var(--glow);
+            transform: translateY(-2px);
+            color: var(--white);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple-anim 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-anim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        nav.sticky {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 5%;
+            box-shadow: var(--shadow-sm);
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none;}
+        .nav-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--secondary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(to right, rgba(248, 250, 252, 0.9), rgba(248, 250, 252, 0.6)), 
+                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            background-attachment: fixed; /* Parallax */
+        }
+        .hero-content { max-width: 600px; z-index: 2; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 15px; }
+        .hero h3 { font-size: 1.5rem; color: var(--secondary); margin-bottom: 20px; font-weight: 500;}
+        .hero p { color: var(--text-light); margin-bottom: 30px; font-size: 1.1rem; }
+        
+        /* Floating Icons */
+        .floating-icon {
+            position: absolute;
+            color: var(--secondary);
+            opacity: 0.2;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+        .fi-1 { top: 20%; left: 10%; font-size: 3rem; animation-delay: 0s; }
+        .fi-2 { top: 70%; left: 40%; font-size: 4rem; animation-delay: 2s; }
+        .fi-3 { top: 30%; right: 20%; font-size: 2.5rem; animation-delay: 4s; }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* --- GLASSMORPHISM CARDS --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--secondary);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-img { width: 100%; border-radius: 20px; box-shadow: var(--shadow-lg); object-fit: cover; aspect-ratio: 3/4;}
+        .stats-container { display: flex; gap: 30px; margin-top: 30px; }
+        .stat-box h3 { font-size: 2.5rem; color: var(--secondary); }
+        
+        /* --- SERVICES SECTION --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+
+        /* --- WHY CHOOSE US --- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+        .feature-icon {
+            width: 80px; height: 80px; margin: 0 auto 15px; background: var(--accent);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 2rem; color: var(--primary); transition: all 0.3s;
+        }
+        .features-grid .glass-card:hover .feature-icon { background: var(--primary); color: var(--white); transform: scale(1.1); }
+
+        /* --- FACILITIES --- */
+        .facilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .facility-card { overflow: hidden; border-radius: 15px; position: relative; }
+        .facility-card img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.5s ease; }
+        .facility-card:hover img { transform: scale(1.1); }
+        .facility-info {
+            position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white; padding: 20px;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .swiper-container { width: 100%; padding: 40px 0; overflow: hidden; }
+        .testimonial-card { text-align: center; padding: 40px 20px; height: 100%; }
+        .stars { color: #F59E0B; margin-bottom: 15px; }
+
+        /* --- APPOINTMENT FORM --- */
+        .appointment-section { background: var(--accent); position: relative; }
+        .form-container { max-width: 600px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 20px; box-shadow: var(--shadow-lg); }
+        .form-group { margin-bottom: 20px; }
+        .form-control {
+            width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #D1D5DB;
+            background: var(--bg-color); font-family: 'Poppins', sans-serif; transition: all 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(76,176,229,0.2); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--text-main); color: var(--white); padding: 60px 5% 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 20px; }
+        .footer-col a { color: #9CA3AF; text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--secondary); }
+        .social-icons a { 
+            display: inline-flex; justify-content: center; align-items: center;
+            width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);
+            margin-right: 15px; font-size: 1.2rem; color: var(--white); transition: all 0.3s;
+        }
+        .social-icons a:hover { background: var(--primary); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; color: #9CA3AF; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } 
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <i class="fas fa-heartbeat heartbeat-icon"></i>
+    </div>
+
+    <nav id="navbar">
+        <a href="#" class="logo">Dr. Tara Kapoor.</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#facilities">Facilities</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#appointment">Contact</a>
+        </div>
+        <a href="#appointment" class="btn ripple-btn">Book Appointment</a>
+    </nav>
+
+    <section class="hero" id="home">
+        <i class="fas fa-stethoscope floating-icon fi-1"></i>
+        <i class="fas fa-pills floating-icon fi-2"></i>
+        <i class="fas fa-user-md floating-icon fi-3"></i>
+
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Dr. Tara Kapoor</h1>
+            <h3>Premium Healthcare Professional</h3>
+            <p>Compassionate Care. Advanced Treatment. Trusted Expertise. Experience modern healthcare tailored to your unique needs.</p>
+            <div style="display: flex; gap: 15px;">
+                <a href="#appointment" class="btn ripple-btn">Book Appointment</a>
+                <a href="#contact" class="btn btn-outline ripple-btn">Contact Clinic</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-grid">
+            <div data-aos="fade-right">
+                <img src="1000148597.png" alt="Dr. Tara Kapoor" class="about-img">
+            </div>
+            <div data-aos="fade-left">
+                <h2 class="section-title" style="text-align: left;">Trusted Health Specialist</h2>
+                <p style="color: var(--text-light); margin-top: 20px; line-height: 1.8;">
+                    With an unwavering dedication to ethical practice and patient-centered healthcare, Dr. Tara Kapoor specializes in providing comprehensive, premium medical care tailored to your individual wellness journey.
+                </p>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3 class="counter" data-target="10">0</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3 class="counter" data-target="15000">0</h3>
+                        <p>Patients Treated</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Comprehensive medical care tailored for you</p>
+        
+        <div class="services-grid">
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-notes-medical service-icon"></i>
+                <h3>General Health Checkups</h3>
+                <p style="color: var(--text-light); margin-top: 10px;">Complete physical examinations and routine screenings.</p>
+            </div>
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-tint service-icon"></i>
+                <h3>Diabetes Management</h3>
+                <p style="color: var(--text-light); margin-top: 10px;">Expert care for Type 1, Type 2, and Gestational Diabetes.</p>
+            </div>
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-heartbeat service-icon"></i>
+                <h3>Blood Pressure Control</h3>
+                <p style="color: var(--text-light); margin-top: 10px;">Hypertension diagnosis, medication, and lifestyle planning.</p>
+            </div>
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-vial service-icon"></i>
+                <h3>Thyroid Treatment</h3>
+                <p style="color: var(--text-light); margin-top: 10px;">Management of hypothyroidism and hyperthyroidism.</p>
+            </div>
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="500">
+                <i class="fas fa-thermometer-half service-icon"></i>
+                <h3>Fever & Infections</h3>
+                <p style="color: var(--text-light); margin-top: 10px;">Rapid diagnosis and treatment for viral and bacterial infections.</p>
+            </div>
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="600">
+                <i class="fas fa-wave-square service-icon"></i>
+                <h3>ECG & Diagnostics</h3>
+                <p style="color: var(--text-light); margin-top: 10px;">In-house diagnostic support for precise medical decisions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" style="background-color: var(--white);">
+        <h2 class="section-title" data-aos="fade-up">Why Choose Us</h2>
+        <p class="section-subtitle" data-aos="fade-up">Setting the standard in primary healthcare</p>
+        
+        <div class="features-grid">
+            <div class="glass-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="feature-icon"><i class="fas fa-microscope"></i></div>
+                <h4>Advanced Diagnosis</h4>
+            </div>
+            <div class="glass-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="feature-icon"><i class="fas fa-smile"></i></div>
+                <h4>Friendly Staff</h4>
+            </div>
+            <div class="glass-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="feature-icon"><i class="fas fa-pump-soap"></i></div>
+                <h4>Sanitized Clinic</h4>
+            </div>
+            <div class="glass-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="feature-icon"><i class="fas fa-wallet"></i></div>
+                <h4>Affordable Consultation</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities">
+        <h2 class="section-title" data-aos="fade-up">Clinic Facilities</h2>
+        <div class="facilities-grid">
+            <div class="facility-card" data-aos="flip-left">
+                <img src="https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Waiting Area">
+                <div class="facility-info"><h4>AC Waiting Area</h4></div>
+            </div>
+            <div class="facility-card" data-aos="flip-left" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="On-site Lab">
+                <div class="facility-info"><h4>On-site Lab</h4></div>
+            </div>
+            <div class="facility-card" data-aos="flip-left" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pharmacy">
+                <div class="facility-info"><h4>Pharmacy</h4></div>
+            </div>
+            <div class="facility-card" data-aos="flip-left" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wheelchair Access">
+                <div class="facility-info"><h4>Wheelchair Access</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" style="background-color: var(--white);">
+        <h2 class="section-title" data-aos="fade-up">Patient Stories</h2>
+        <p class="section-subtitle" data-aos="fade-up">Hear from those who trust us with their health.</p>
+        
+        <div class="swiper-container mySwiper" data-aos="fade-up" data-aos-delay="200">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="glass-card testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"Dr. Kapoor is incredibly patient. She took the time to explain my wellness management plan thoroughly. Highly recommend!"</p>
+                        <h4 style="margin-top: 20px;">- Priya S.</h4>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="glass-card testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"The clinic is spotless and the staff is very welcoming. I felt comfortable and well-cared for during my health checkup."</p>
+                        <h4 style="margin-top: 20
