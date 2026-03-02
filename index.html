@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadbury Chocolate | Premium Chocolate Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cadbury-purple: #4B286D;
+            --cadbury-gold: #FFD700;
+            --cadbury-cream: #FFF8E1;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f0ff 0%, #fff0f5 100%);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(75, 40, 109, 0.1);
+        }
+        
+        .social-hover:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cadbury-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="https://images.ctfassets.net/pmzhtobns06n/2lwDnQV5TUAx15z7Z2FYWw/63e169e6c0155db88194f2a506b260e8/Cadbury_GlobalNavigation_BrandLogo_Desktop.svg?q=80" 
+                         alt="Cadbury Logo" class="h-10">
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-purple-700 font-medium">About</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-purple-700 font-medium">Explore</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-purple-700 font-medium">Products</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-purple-700 font-medium">Recipes</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-purple-700 font-medium">Gifting</a>
+                </div>
+                
+                <!-- Search and Menu -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 hover:bg-gray-100 rounded-full">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                    <button class="md:hidden p-2 hover:bg-gray-100 rounded-full" id="mobileMenuButton">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden mt-4 hidden" id="mobileMenu">
+                <div class="flex flex-col space-y-3 py-4">
+                    <a href="#" class="text-gray-700 hover:text-purple-700 font-medium py-2">About</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-700 font-medium py-2">Explore</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-700 font-medium py-2">Products</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-700 font-medium py-2">Recipes</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-700 font-medium py-2">Gifting</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative gradient-bg overflow-hidden">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="z-10">
+                    <span class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        NEW LIMITED EDITION BARS
+                    </span>
+                    <h1 class="brand-font text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                        Made to <span class="text-purple-700">Share</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        There are 36 chunks in a bar of Cadbury Dairy Milk, but how do you decide who gets what? 
+                        Our Made to Share bars are back to help reward those among us who generously do that 
+                        extra little bit in everyday life.
+                    </p>
+                    <button class="bg-purple-700 hover:bg-purple-800 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        DISCOVER MORE
+                    </button>
+                </div>
+                <div class="relative">
+                    <img src="https://images.ctfassets.net/pmzhtobns06n/6DhwbZCn8yCxuEDwICfojt/fadae3252e599a2420020339024471a8/CDM_Biscoff_Cameo.png?fm=webp&q=80" 
+                         alt="Cadbury Dairy Milk Biscoff" 
+                         class="rounded-3xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-purple-600 to-pink-500 text-white p-6 rounded-2xl shadow-xl">
+                        <span class="text-sm font-semibold">NEW PRODUCT</span>
+                        <p class="text-lg font-bold mt-2">Cadbury Dairy Milk<br>Biscoff</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-200 rounded-full -translate-y-32 translate-x-32 opacity-50"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-pink-100 rounded-full translate-y-32 -translate-x-32 opacity-50"></div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="brand-font text-4xl font-bold text-center mb-12">Our Latest Creations</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.ctfassets.net/pmzhtobns06n/wjH2c0AmS2G3onhSvo58M/2a9a883b23b9994500c800c2958a3c8d/Cadbury_FingersCrossed_d.png?fm=webp&q=80&fm=webp&q=80" 
+                             alt="Fingers Crossed" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                            PROMOTION
+                        </span>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Fingers Crossed</h3>
+                        <p class="text-gray-600 mb-4">
+                            Find a crossed finger in a pack for your chance to win today!
+                        </p>
+                        <button class="text-purple-700 hover:text-purple-800 font-semibold flex items-center">
+                            Discover Fingers Crossed
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.ctfassets.net/pmzhtobns06n/1q37H8X3Yofn8FfT8ymaiE/8f713de3110a64952b0526957c6b4e8b/Bournville_Desktop.png?fm=webp&q=80&fm=webp&q=80" 
+                             alt="Cadbury Bournville" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                            NEW LOOK
+                        </span>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Cadbury Bournville</h3>
+                        <p class="text-gray-600 mb-4">
+                            The original smooth dark chocolate. Now with 2x delicious new flavours.
+                        </p>
+                        <button class="text-purple-700 hover:text-purple-800 font-semibold flex items-center">
+                            Discover Bournville
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100">
+                    <div class="relative overflow-hidden h-64">
+                        <div class="grid grid-cols-2 h-full">
+                            <img src="https://images.ctfassets.net/pmzhtobns06n/1LWjR29mDtArvTbg9OAocB/9bfff328559af18b5ecf59da72ccff0a/CDM_Honeycomb_Nuts_Chunk.png?fm=webp&q=80" 
+                                 alt="Honeycomb Nuts" 
+                                 class="w-full h-full object-cover">
+                            <img src="https://images.ctfassets.net/pmzhtobns06n/6ZQTeaEAUdAZ3sjUF2hVlg/d38901cc1569710f0ba3ff6d8af15551/CDM_Black_Forest_Chunk.png?fm=webp&q=80" 
+                                 alt="Black Forest" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Flavour Collection</h3>
+                        <p class="text-gray-600 mb-4">
+                            Explore our premium flavour combinations and find your new favourite.
+                        </p>
+                        <button class="text-purple-700 hover:text-purple-800 font-semibold flex items-center">
+                            View All Flavours
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section class="py-16 bg-gradient-to-r from-purple-50 to-pink-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="brand-font text-4xl font-bold mb-4">Our Favourite Recipes</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover delicious recipes using Cadbury chocolate for every occasion</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Recipe 1 -->
+                <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-2/5">
+                            <img src="https://tastehub.mdlzapps.cloud/img-svc/0c62ace4-9ee8-491a-92ec-97af68e7ca0d.webp" 
+                                 alt="Mini Egg Chunky Cookies" 
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="md:w-3/5 p-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Mini Egg Chunky Cookies</h3>
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="flex items-center text-gray-600">
+                                    <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                                    <span>191 mins</span>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i data-lucide="users" class="w-4 h-4 mr-2"></i>
+                                    <span>8 Servings</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Perfect for Easter celebrations or any time you need a chocolate fix!
+                            </p>
+                            <button class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300">
+                                View Recipe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recipe 2 -->
+                <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-2/5">
+                            <img src="https://tastehub.mdlzapps.cloud/img-svc/9282b115-ac12-4205-8f4c-2338f9a50446.webp" 
+                                 alt="Cadbury Caramel Brookies" 
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="md:w-3/5 p-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Cadbury Caramel Brookies</h3>
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="flex items-center text-gray-600">
+                                    <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                                    <span>30 mins</span>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i data-lucide="users" class="w-4 h-4 mr-2"></i>
+                                    <span>10 Servings</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                A perfect blend of brownie and cookie with gooey caramel centers.
+                            </p>
+                            <button class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300">
+                                View Recipe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button class="text-purple-700 hover:text-purple-800 font-semibold text-lg flex items-center justify-center mx-auto">
+                    Discover All Recipes
+                    <i data-lucide="chevron-right" class="w-5 h-5 ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gifting Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.ctfassets.net/pmzhtobns06n/7F98dWD2Wrrzd0GhAq65xc/625c5c463084716c1c16726f20b057c7/CGD-Mothers-Day--1-1216x1040.jpg?fm=webp&q=80&fm=webp&q=80" 
+                         alt="Mother's Day Gift Ideas" 
+                         class="rounded-3xl shadow-xl">
+                </div>
+                <div>
+                    <h2 class="brand-font text-4xl font-bold mb-6">Perfect Gifts for Every Occasion</h2>
+                    <p class="text-gray-600 mb-8">
+                        Cadbury can help you find the perfect gift for your loved ones, whether it's Mother's Day, 
+                        birthdays, or just because. Our beautifully packaged chocolate gifts are sure to delight.
+                    </p>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Discover Gifts
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="brand-font text-4xl font-bold mb-4">Our Beloved Brands</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore the Cadbury family of chocolate brands</p>
+            </div>
+            
+            <div class="bg-white rounded-3xl p-8 shadow-lg mb-8">
+                <img src="https://images.ctfassets.net/pmzhtobns06n/6rMRgO7h9FjpAZ0qIJdeQ0/b2bf67248eb2e8860c4532d81b26a8c7/Cadbury-BrandLogos.gif?fm=webp&q=80&fm=webp&q=80" 
+                     alt="Cadbury Brands" 
+                     class="w-full rounded-2xl">
+            </div>
+            
+            <div class="text-center">
+                <button class="bg-white text-purple-700 hover:bg-gray-50 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                    See All Brands
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-purple-700 to-purple-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="brand-font text-4xl font-bold mb-6">Treat Your Inbox</h2>
+                <p class="text-purple-100 mb-8">
+                    Want to know about all the latest goodies from Cadbury? Sign up and you'll be the first to hear 
+                    about exclusive offers, new delicious chocolate treats, gifts and more.
+                </p>
+                <form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+                    <input type="email" 
+                           placeholder="Enter your email address" 
+                           class="flex-grow px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-purple-900 font-bold px-8 py-4 rounded-full transition-colors duration-300">
+                        Sign Up
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="https://images.ctfassets.net/pmzhtobns06n/2lwDnQV5TUAx15z7Z2FYWw/63e169e6c0155db88194f2a506b260e8/Cadbury_GlobalNavigation_BrandLogo_Desktop.svg?q=80" 
+                         alt="Cadbury Logo" 
+                         class="h-8 mb-6">
+                    <p class="text-gray-400">
+                        Bringing joy through delicious chocolate since 1824.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">About Cadbury</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Story</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">History</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Sustainability</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Help & Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Product Information</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accessibility</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Connect With Us</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="social-hover bg-purple-700 p-3 rounded-full">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="social-hover bg-pink-600 p-3 rounded-full">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="social-hover bg-gray-800 p-3 rounded-full">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="social-hover bg-red-500 p-3 rounded-full">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Follow us for the latest news, recipes, and chocolate inspiration.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <img src="https://images.ctfassets.net/pmzhtobns06n/2kEDmwTjEX4J1azHCiCS0a/ee9d70f71b52352d684fd59240ce3113/Mondelez_Logo_White.svg?q=80" 
+                             alt="Mondelez International" 
+                             class="h-6">
+                        <p class="text-gray-400 text-sm mt-2">© 2026 Mondelez United Kingdom</p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Use</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Notice</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Notice</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Modern Slavery Statement</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (menu.classList.contains('hidden')) {
+                icon.setAttribute('data-lucide', 'menu');
+            } else {
+                icon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add hover effect to product cards
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Newsletter form submission
+        document.querySelector('form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Thank you for subscribing to Cadbury updates!');
+                this.reset();
+            }
+        });
+    </script>
+<script src="https://deepsite.hf.co/deepsite-badge.js"></script>
+</body>
+</html>
